@@ -24,7 +24,7 @@
                     CornerRadius="8 0 0 8">
                 <Grid x:Name="GridNav" Width="60">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="70"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
@@ -55,11 +55,13 @@
                                FontSize="10"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Left"
-                               Margin="60 40 0 0"/>
+                               Margin="60 50 0 0"/>
                     </Grid>
 
                     <!-- Start: MenuItem -->
-                    <StackPanel Grid.Row="1" Margin="-1 40 0 20">
+                    <StackPanel Grid.Row="1" Margin="-1 30 0 20">
+                        <!--Menu Seperator-->
+                        <Separator Margin="20 -15 20 0" DockPanel.Dock="Top" Height="0.8" Background="#eff2f7"/>
                         <!--Dashboard-->
                         <Button x:Name="btnDashboard" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnDashboard_MouseEnter" MouseLeave="btnDashboard_MouseLeave" Click="btnDashboard_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource dashboard}" IconWidth="16" Text="Dashboard" VerticalAlignment="Center"/>
