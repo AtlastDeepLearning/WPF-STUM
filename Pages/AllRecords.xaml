@@ -30,7 +30,7 @@
             Foreground="#844eff" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
         <!--All Records Data grid-->
-        <DataGrid x:Name="personDataGrid" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" 
+        <DataGrid x:Name="allRecordsDataGrid" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" 
             ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" 
             Grid.Row="5">
             <DataGrid.Columns>

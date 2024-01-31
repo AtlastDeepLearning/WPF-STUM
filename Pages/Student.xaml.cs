@@ -32,11 +32,9 @@ namespace WPF_STUM.Pages
         private class StudentModel
         {
             public string Student_Number { get; set; }
-            public int Year { get; set; }
-            public string Last_Name { get; set; }
-            public string Given_Name { get; set; }
-            public string Middle_Name { get; set; }
             public string Program_Description { get; set; }
+            public int Year { get; set; }
+            
         }
 
         private void LoadStudentData()
@@ -61,11 +59,8 @@ namespace WPF_STUM.Pages
                                 StudentModel student = new StudentModel
                                 {
                                     Student_Number = reader["Student_Number"].ToString(),
-                                    Year = Convert.ToInt32(reader["Year"]),
-                                    Last_Name = reader["Last_Name"].ToString(),
-                                    Given_Name = reader["Given_Name"].ToString(),
-                                    Middle_Name = reader["Middle_Name"].ToString(),
-                                    Program_Description = reader["Program_Description"].ToString()
+                                    Program_Description = reader["Program_Description"].ToString(),
+                                    Year = Convert.ToInt32(reader["Year"])
                                 };
 
                                 students.Add(student);
@@ -82,15 +77,6 @@ namespace WPF_STUM.Pages
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-
-
-        private class PersonModel
-        {
-            public string StudentNumber { get; set; }
-            public string Year { get; set; }
-            public string Program { get; set; }
-        }
-
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {

@@ -46,11 +46,8 @@
             <DataGrid.Columns>
 
                 <DataGridTextColumn Header="Student Number" IsReadOnly="True" Width="*" Binding="{Binding Student_Number}"/>
-                <DataGridTextColumn Header="Year" IsReadOnly="True" Width="*" Binding="{Binding Year}"/>
-                <DataGridTextColumn Header="First name" IsReadOnly="True" Width="*" Binding="{Binding Given_Name}"/>
-                <DataGridTextColumn Header="Middle name" IsReadOnly="True" Width="*" Binding="{Binding Middle_Name}"/>
-                <DataGridTextColumn Header="Last name" IsReadOnly="True" Width="*" Binding="{Binding Last_Name}"/>
                 <DataGridTextColumn Header="Program" IsReadOnly="True" Width="*" Binding="{Binding Program_Description}"/>
+                <DataGridTextColumn Header="Year" IsReadOnly="True" Width="*" Binding="{Binding Year}"/>
 
                 <DataGridTemplateColumn Header="Operations" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
