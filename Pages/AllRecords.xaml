@@ -3,9 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:WPF_STUM.Pages"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="720" d:DesignWidth="1080">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -28,14 +29,33 @@
         <TextBlock Text="Mapua University Logs" Grid.Row="4" FontSize="18" FontWeight="SemiBold"
             Foreground="#844eff" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-        <DataGrid Margin="10,10,10,562" Grid.Row="5">
+        <!--All Records Data grid-->
+        <DataGrid x:Name="personDataGrid" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" 
+            ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" 
+            Grid.Row="5">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="First name" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Middle name" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Last name" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Student number" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Program" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Year Level" IsReadOnly="True" Width="*"/>
+
+                <DataGridTextColumn Header="Student Number" IsReadOnly="True" Width="*" Binding="{Binding Student_Number}"/>
+                <DataGridTextColumn Header="Year" IsReadOnly="True" Width="*" Binding="{Binding Year}"/>
+                <DataGridTextColumn Header="First name" IsReadOnly="True" Width="*" Binding="{Binding Given_Name}"/>
+                <DataGridTextColumn Header="Middle name" IsReadOnly="True" Width="*" Binding="{Binding Middle_Name}"/>
+                <DataGridTextColumn Header="Last name" IsReadOnly="True" Width="*" Binding="{Binding Last_Name}"/>
+                <DataGridTextColumn Header="Program" IsReadOnly="True" Width="*" Binding="{Binding Program_Description}"/>
+
+                <DataGridTemplateColumn Header="Operations" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <!--Delete Button-->
+                                <Button x:Name="btnDelete" Click="btnDelete_Click" Style="{DynamicResource gridDeleteButton}">
+                                    <Icon:PackIconMaterial Kind="DeleteOutline"
+                                Style="{DynamicResource gridButtonIcon}"/>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
             </DataGrid.Columns>
         </DataGrid>
 

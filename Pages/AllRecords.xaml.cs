@@ -24,5 +24,10 @@ namespace WPF_STUM.Pages
         {
             InitializeComponent();
         }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
