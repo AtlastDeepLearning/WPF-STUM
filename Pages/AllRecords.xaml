@@ -35,7 +35,7 @@
             Grid.Row="5">
             <DataGrid.Columns>
 
-                <DataGridTextColumn Header="Student Number" IsReadOnly="True" Width="*" Binding="{Binding Student_Number}"/>
+                <DataGridTextColumn Header="Student No." IsReadOnly="True" Width="*" Binding="{Binding Student_Number}"/>
                 <DataGridTextColumn Header="Year" IsReadOnly="True" Width="*" Binding="{Binding Year}"/>
                 <DataGridTextColumn Header="First name" IsReadOnly="True" Width="*" Binding="{Binding Given_Name}"/>
                 <DataGridTextColumn Header="Middle name" IsReadOnly="True" Width="*" Binding="{Binding Middle_Name}"/>
@@ -47,8 +47,8 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <!--Delete Button-->
-                                <Button x:Name="btnDelete" Click="btnDelete_Click" Style="{DynamicResource gridDeleteButton}">
-                                    <Icon:PackIconMaterial Kind="DeleteOutline"
+                                <Button x:Name="btnDelete" Click="btnDelete_Click" Style="{DynamicResource gridEditButton}">
+                                    <Icon:PackIconMaterial Kind="File"
                                 Style="{DynamicResource gridButtonIcon}"/>
                                 </Button>
                             </StackPanel>

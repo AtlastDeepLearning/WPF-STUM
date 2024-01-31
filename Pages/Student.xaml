@@ -58,11 +58,6 @@
                                     <Icon:PackIconMaterial Kind="PencilOutline"
                                         Style="{DynamicResource gridButtonIcon}"/>
                                 </Button>
-                                <!--Save Button-->
-                                <Button x:Name="btnSave" Click="btnSave_Click" Style="{DynamicResource gridSaveButton}">
-                                    <Icon:PackIconMaterial Kind="ContentSaveEdit"
-                                        Style="{DynamicResource gridButtonIcon}"/>
-                                </Button>
                                 <!--Delete Button-->
                                 <Button x:Name="btnDelete" Click="btnDelete_Click" Style="{DynamicResource gridDeleteButton}">
                                     <Icon:PackIconMaterial Kind="DeleteOutline"
