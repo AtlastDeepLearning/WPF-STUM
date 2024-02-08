@@ -78,25 +78,33 @@ namespace WPF_STUM.Pages
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
+            addPerson add = new addPerson();
+            add.ShowDialog();
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            // Implement code for editing person details
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                // Check if a row is selected
+                if (personDataGrid.SelectedItem != null)
                 {
-                    connection.Open();
+                    // Get the selected person from the ObservableCollection
+                    PersonModel selectedPerson = (PersonModel)personDataGrid.SelectedItem;
 
-                    using (SqlCommand cmd = new SqlCommand("AddPerson", connection))
-                    {
-                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    // Remove the person from the ObservableCollection
+                    persons.Remove(selectedPerson);
 
-                        // Replace with actual values from your UI elements
-                        cmd.Parameters.AddWithValue("@LastName", "Doe");
-                        cmd.Parameters.AddWithValue("@GivenName", "John");
-                        cmd.Parameters.AddWithValue("@MiddleName", "A.");
+                    // Delete the person data from the database
+                    DeletePersonData(selectedPerson);
 
-                        cmd.ExecuteNonQuery();
-
-                        MessageBox.Show("Person added successfully!");
-                    }
+                    // Refresh the data grid
+                    personDataGrid.Items.Refresh();
                 }
             }
             catch (Exception ex)
@@ -105,19 +113,47 @@ namespace WPF_STUM.Pages
             }
         }
 
-        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        private void DeletePersonData(PersonModel person)
         {
-            // Implement code for editing person details
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Delete associated records in the Student table
+                    string deleteStudentQuery = "DELETE FROM Student WHERE Person_ID = (SELECT Person_ID FROM Person WHERE Last_Name = @LastName AND Given_Name = @GivenName AND Middle_Name = @MiddleName)";
+
+                    using (SqlCommand cmdDeleteStudent = new SqlCommand(deleteStudentQuery, connection))
+                    {
+                        cmdDeleteStudent.Parameters.AddWithValue("@LastName", person.Last_Name);
+                        cmdDeleteStudent.Parameters.AddWithValue("@GivenName", person.Given_Name);
+                        cmdDeleteStudent.Parameters.AddWithValue("@MiddleName", person.Middle_Name);
+
+                        // Execute the delete query for the Student table
+                        cmdDeleteStudent.ExecuteNonQuery();
+                    }
+
+                    // Delete the person from the Person table
+                    string deletePersonQuery = "DELETE FROM Person WHERE Last_Name = @LastName AND Given_Name = @GivenName AND Middle_Name = @MiddleName";
+
+                    using (SqlCommand cmdDeletePerson = new SqlCommand(deletePersonQuery, connection))
+                    {
+                        cmdDeletePerson.Parameters.AddWithValue("@LastName", person.Last_Name);
+                        cmdDeletePerson.Parameters.AddWithValue("@GivenName", person.Given_Name);
+                        cmdDeletePerson.Parameters.AddWithValue("@MiddleName", person.Middle_Name);
+
+                        // Execute the delete query for the Person table
+                        cmdDeletePerson.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error deleting person data: " + ex.Message);
+            }
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            // Implement code for saving changes
-        }
 
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
-        {
-            // Implement code for deleting a person
-        }
     }
 }

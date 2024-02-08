@@ -34,7 +34,7 @@ namespace WPF_STUM.Pages
             public string Student_Number { get; set; }
             public string Program_Description { get; set; }
             public int Year { get; set; }
-            
+
         }
 
         private void LoadStudentData()
@@ -80,25 +80,33 @@ namespace WPF_STUM.Pages
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
+            addStudent add = new addStudent();
+            add.ShowDialog();
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            // Implement code for editing person details
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                // Check if a row is selected in the data grid
+                if (studentDataGrid.SelectedItem != null)
                 {
-                    connection.Open();
+                    // Get the selected student from the ObservableCollection
+                    StudentModel selectedStudent = (StudentModel)studentDataGrid.SelectedItem;
 
-                    using (SqlCommand cmd = new SqlCommand("AddPerson", connection))
-                    {
-                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    // Delete the student record from the database
+                    DeleteStudentRecord(selectedStudent);
 
-                        // Replace with actual values from your UI elements
-                        cmd.Parameters.AddWithValue("@LastName", "Doe");
-                        cmd.Parameters.AddWithValue("@GivenName", "John");
-                        cmd.Parameters.AddWithValue("@MiddleName", "A.");
+                    // Remove the student from the ObservableCollection
+                    students.Remove(selectedStudent);
 
-                        cmd.ExecuteNonQuery();
-
-                        MessageBox.Show("Person added successfully!");
-                    }
+                    // Refresh the data grid
+                    studentDataGrid.Items.Refresh();
                 }
             }
             catch (Exception ex)
@@ -107,19 +115,31 @@ namespace WPF_STUM.Pages
             }
         }
 
-        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        private void DeleteStudentRecord(StudentModel student)
         {
-            // Implement code for editing person details
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Delete the student record from the Student table
+                    string deleteStudentQuery = "DELETE FROM Student WHERE Student_Number = @StudentNumber";
+
+                    using (SqlCommand cmdDeleteStudent = new SqlCommand(deleteStudentQuery, connection))
+                    {
+                        cmdDeleteStudent.Parameters.AddWithValue("@StudentNumber", student.Student_Number);
+
+                        // Execute the delete query for the Student table
+                        cmdDeleteStudent.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error deleting student record: " + ex.Message);
+            }
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            // Implement code for saving changes
-        }
-
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
-        {
-            // Implement code for deleting a person
-        }
     }
 }

@@ -187,6 +187,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\addPerson.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\addStudent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AllRecords.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -195,19 +203,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\editPersonData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\editStudentData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Person.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Student.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Subpages\AddPerson.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Subpages\AddStudent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,23 +229,29 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\addPerson.xaml.cs">
+      <DependentUpon>addPerson.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\addStudent.xaml.cs">
+      <DependentUpon>addStudent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AllRecords.xaml.cs">
       <DependentUpon>AllRecords.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\editPersonData.xaml.cs">
+      <DependentUpon>editPersonData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\editStudentData.xaml.cs">
+      <DependentUpon>editStudentData.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Person.xaml.cs">
       <DependentUpon>Person.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Student.xaml.cs">
       <DependentUpon>Student.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Subpages\AddPerson.xaml.cs">
-      <DependentUpon>AddPerson.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Subpages\AddStudent.xaml.cs">
-      <DependentUpon>AddStudent.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

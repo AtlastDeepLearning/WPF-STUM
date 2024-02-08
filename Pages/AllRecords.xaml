@@ -46,7 +46,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <!--Delete Button-->
+                                <!--See info Button-->
                                 <Button x:Name="btnDelete" Click="btnDelete_Click" Style="{DynamicResource gridEditButton}">
                                     <Icon:PackIconMaterial Kind="File"
                                 Style="{DynamicResource gridButtonIcon}"/>
